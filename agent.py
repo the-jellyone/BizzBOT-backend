@@ -149,13 +149,7 @@ agent_executor = AgentExecutor(
     tools=tools,
     verbose=True,
     return_intermediate_steps=True,
-    handle_parsing_errors=(
-        "Your last response was not in the correct format. "
-        "You MUST respond with either:\n"
-        "Thought: Do I need to use a tool? No\nFinal Answer: <your answer>\n\n"
-        "OR if using a tool:\n"
-        "Thought: Do I need to use a tool? Yes\nAction: Search\nAction Input: <query>"
-    ),
+    handle_parsing_errors=True,
     max_iterations=7,
     max_execution_time=60,
 )
