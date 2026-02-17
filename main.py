@@ -94,9 +94,17 @@ async def voice_chat_endpoint(
             headers=headers,
         )
 
-    except Exception as e:
+        except Exception as e:
         print(f"[/voice-chat] Error: {e}")
-        return JSONResponse(status_code=500, content={"error": str(e)})
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)},
+            headers={
+            "X-AI-Text": urllib.parse.quote("Voice unavailable. Check chat for full response."),
+            "X-User-Text": urllib.parse.quote("Voice message"),
+            "Access-Control-Expose-Headers": "X-AI-Text, X-User-Text",
+            }
+    )
 
 
 
